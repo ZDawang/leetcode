@@ -22,7 +22,7 @@ class Solution(object):
 				return (i, dic[target-nums[i]])
 			dic[nums[i]] = i
 
-nums = [1,3,4,5,7,8,9,11,15,18]
+nums = [1,3,4,5,7,8,9,11,15,18,20]
 target = 29
 a = 10
 b = 0
