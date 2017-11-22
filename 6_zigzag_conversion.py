@@ -34,5 +34,5 @@ s = "abcdefghijklmn"
 
 solute = Solution()
 
-res = solute.convert(s, 3)
+res = solute.convert(s, 4)
 print (res)
