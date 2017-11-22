@@ -66,6 +66,29 @@ class Solution(object):
         return result
 
 
+    #自己理解写的代码
+    def findKthNumber(self, n, k):
+        #初始res为1，所以k需要减1
+        res, k = 1, k - 1
+        while k > 0:
+            #检查以res开头的是否满足。
+            start, end = res, res + 1
+            #count为-1，是因为end-start=1，多出一个res+1。它是以res+1开头的。
+            count = -1
+            while start <= n:
+                count += end - start
+                start = min(start * 10, n + 1)
+                end = min(end * 10, n + 1)
+            #当以res开头的不满足情况，则把res开头的count去掉，因为res+1也占了一个，所以多减一个1
+            if count < k:
+                res += 1
+                k -= count + 1
+            #因为res*10也占一个，所以减1
+            else:
+                res *= 10
+                k -= 1
+        return res
+
 n, k = 100, 10
 solute = Solution()
 res = solute.findKthNumber(n, k)
