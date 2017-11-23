@@ -10,14 +10,12 @@
 #beats: 
 
 class Solution(object):
-    #动态规划，改变range的start的值
+    #第一思路：直接解，找到一段连续的就存进结果里，不连续的就重新计
     def summaryRanges(self, nums):
         if not nums:
             return []
-        res = []
-        start = 0
-        l = len(nums)
-        for i in range(1, l):
+        res, start = [], 0
+        for i in range(1, len(nums)):
             if nums[i] == nums[i - 1] + 1:
                 continue
             if i == start + 1:
@@ -25,8 +23,8 @@ class Solution(object):
             else:
                 res.append(str(nums[start]) + "->" + str(nums[i - 1]))
             start = i
-
-        if l == start + 1:
+        #最后一个数
+        if start + 1 == len(nums):
             res.append(str(nums[-1]))
         else:
             res.append(str(nums[start]) + "->" + str(nums[-1]))
