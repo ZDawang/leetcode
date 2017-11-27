@@ -28,8 +28,8 @@ class Solution(object):
         return dp[-1]
 
     #O(mn)DP
-    #dp[i][j]表示使用前i种coin来组成j的可能性。
-    #本质跟上面思路一样,不断增加新一种的硬币，计算结果。
+    #本质是背包问题。
+    #dp[i][j]表示使用前i种coin来组成j的可能结果。
     def change2(self, amount, coins):
         if not coins: return 1 if amount == 0 else 0
         dp = [[0] * (amount + 1) for _ in range(len(coins))]
