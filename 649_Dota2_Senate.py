@@ -10,7 +10,7 @@
 #beats: 
 
 class Solution(object):
-    #每次禁止下面离他最近的
+    #贪心算法，每次禁止下面离他最近的
     #banR代表下面可以禁止的R有多少个
     #aliveR代表总共剩下多少个R议员
     def predictPartyVictory(self, senate):

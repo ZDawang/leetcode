@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #author : zhangdawang
-#data: 2017-10
+#data: 2017-12
 #difficulty degree：
 #problem: 
 #time_complecity:  
