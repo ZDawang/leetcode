@@ -22,6 +22,7 @@ class Solution(object):
             minnum, row, col = heapq.heappop(heap)
             if row < n - 1:
                 heapq.heappush(heap, [matrix[row + 1][col], row + 1, col])
+            i += 1
         return minnum
 
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #author : zhangdawang
-#data:2017-3-7
+#date:2017-3-7
 #difficulty degree ：medium
 #problem:3. Longest Substring Without Repeating Characters
 #time_complecity:  
