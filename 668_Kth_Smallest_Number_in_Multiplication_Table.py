@@ -53,6 +53,10 @@ class Solution(object):
             for i in range(1, m + 1):
                 #第i行，小于等于mid的个数为mid//i，同时最多有n个，所以是min(mid // i, n)
                 res += min(mid // i, n)
+                #要是这里换成下面，可以减少很多时间。。。
+                #t = mid // i
+                #if t > n: t = n
+                #res += t
             return res
 
         #二分
