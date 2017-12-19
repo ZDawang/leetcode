@@ -38,6 +38,24 @@ class Solution(object):
                     break
         return res[:end]
 
+    #从前缀第一位开始向后遍历。找到不是共同前缀的那一位
+    def longestCommonPrefix3(self, strs):
+        if not strs: return ""
+        prefix, end = strs[0], 0
+        min_len = min(len(s) for s in strs)
+        flag = 1
+        while end < min_len:
+            for s in strs:
+                if prefix[end] != s[end]:
+                    flag = 0
+                    break
+            if flag: 
+                end += 1
+            else:
+                break
+        return prefix[:end]
+
+
 
 strs = ["aaa", "aa", "aaa"]
 solute = Solution()
