@@ -27,9 +27,9 @@ class Solution(object):
             dp = newdp
         return dp[-1]
 
-    #O(mn)DP
+    #O(amount*n)DP
     #本质是背包问题。
-    #dp[i][j]表示使用前i种coin来组成j的可能结果。
+    #dp[i][j]表示使用前i种coin来组成j的可能结果数量。
     def change2(self, amount, coins):
         if not coins: return 1 if amount == 0 else 0
         dp = [[0] * (amount + 1) for _ in range(len(coins))]
