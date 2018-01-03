@@ -38,6 +38,7 @@ class Solution(object):
 
 
     #思路2：discuss中的滑动窗。
+    
 
 nums = [[1,2,3],[1,2,3],[1,2,3]]
 solute = Solution()
