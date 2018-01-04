@@ -10,6 +10,8 @@
 #beats: 
 
 class Solution(object):
+    #将相邻的两个bit位进行异或运算，
+    #当所有相邻的bit位异或结果都为1，则说明是alternating
     def hasAlternatingBits(self, n):
         pre = 0 if (n & 1) else 1
         while n > 0:

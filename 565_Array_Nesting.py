@@ -45,7 +45,7 @@ class Solution(object):
                 uf[x] += uf[y]
                 uf[y] = x
 
-        uf = [-1 for i in range(len(nums))] 
+        uf = [-1 for i in range(len(nums))]
         for i, num in enumerate(nums):
             union(i, num)
         return -max(uf, key = lambda x: -x)
