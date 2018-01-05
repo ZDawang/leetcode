@@ -18,3 +18,20 @@ class Solution(object):
             else:
                 d[nums[i]] = i
         return False
+
+    #滑动窗
+    #用window来存放长度为k的数。(刚开始时，长度小于k)。
+    #检测当前数是否在窗中即可。
+    #l,r为窗的边界。
+    def containsNearbyDuplicate2(self, nums, k):
+        if not nums or k == 0:
+            return False
+        window, l = set(), 0
+        for r, num in enumerate(nums):
+            if num in window:
+                return True
+            if r - l == k:
+                window.remove(nums[l])
+                l += 1
+            window.add(num)
+        return False
