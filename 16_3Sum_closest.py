@@ -24,7 +24,6 @@ class Solution(object):
             l, r = i+1, len_nums - 1
             while(l < r):
                 temp = nums[i] + nums[l] + nums[r]
-                print(i,l,r,temp,dis)
                 if temp-target == 0:
                     return temp
                 if abs(temp - target) < dis:
