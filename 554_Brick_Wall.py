@@ -8,18 +8,27 @@
 #time_complecity:  
 #space_complecity: 
 #beats: 
-
+import collections
+from functools import reduce
 class Solution(object):
-    #找出每行sum值都会取的最大个数
+    #第一思路，扫描线。从左到右扫描。
+    #m = len(wall), n = sum(wall[0])
+    #时间复杂度O(mn),空间复杂度O(m),肯定会超时。。
+
+    #哈希解法，将每行的cumsum都放入字典中。
+    #则每个值的出现次数，则说明有多少行的wall都会在这里有间隙，取值出现的最大次数即可。
     def leastBricks(self, wall):
-        d = {}
+        if not wall: return 0
+        d = collections.defaultdict(int)
         for w in wall:
-            wblock = 0
+            cumsum = 0
             for block in w:
-                wblock += block
-                d[wblock] = d.get(wblock, 0) + 1
+                cumsum += block
+                d[cumsum] += 1
+        #不能包括wall的边缘。
         d[sum(wall[0])] = 0
         return len(wall) - max(d.values())
+
 
 wall = [[1], [1], [1]]
 
