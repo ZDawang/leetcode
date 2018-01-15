@@ -27,6 +27,8 @@ class Solution(object):
 
     #O(nlogn)
     #dp为到当前数字的最长数组，dp的长度不变小，当新数字来时，将新数字放入dp，隐性的做了一次len(dp) = max(len(dp), 到当前数字的最大子序列长度)
+    #dp[i]为长度为i的子串的最小结尾数字。
+    #可以直到，dp为一个递增的序列。不断更新dp中的值或者长度即可。
     def lengthOfLIS2(self, nums):
         if not nums: return 0
         l = len(nums)
