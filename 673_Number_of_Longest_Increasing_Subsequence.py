@@ -31,13 +31,12 @@ class Solution(object):
         maxlength = max(length)
         return sum(number[i] for i in range(n) if length[i] == maxlength)
 
-    #可以做优化，像300题一样。
-    #O(nlogn)
-    #minNum[i]表示长度为i的递增子串的结尾最小数字。
+    #O(nlogn)DP思路，与300题一样。
+    #minNum[i]表示 长度为i的递增子串 的结尾最小数字。
     #count[i][num] 表示长度为i的递增子串的结尾为num的子串数量。
     #size记录最长的子串长度。
     def findNumberOfLIS2(self, nums):
-        #在nums中找到插入的位置。
+        #二分搜索，在nums中找到插入的位置。
         def binarySearch(nums, num):
             if not nums or num > nums[-1]:
                 return len(nums)
@@ -54,7 +53,7 @@ class Solution(object):
         minNum, counts = [float("inf")] * len(nums), [defaultdict(int) for _ in range(len(nums))]
         size = 0
         for num in nums:
-            #获取插入位置
+            #获取插入位置，也就是当前数字作为最后一个数字的 最长子串长度。
             index = binarySearch(minNum, num)
             #更新minNum与size
             minNum[index] = num
