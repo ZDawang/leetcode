@@ -41,13 +41,17 @@ class Solution(object):
             dp2[i] = sign * temp
         return max(abs(dp[-1]), abs(dp2[-1]))
 
-    #O(n),以状态作为dp,分别记最后一次为up与down的结果的最大值
+    #O(n)
+    #up表示到当前数字，最后数字为上升的最长子序列的长度。
+    #down表示到当前数字，最后数字为下降的最长子序列的长度。
     def wiggleMaxLength(self, nums):
         if not nums: return 0
         l = len(nums)
         up, down = [1] * l, [1] * l
         for i in range(1, l):
+            #若当前数字比前一个数字大，则up[i] = down[i-1] + 1
             up[i] = down[i - 1] + 1 if(nums[i] > nums[i - 1]) else up[i - 1]
+            #若当前数字比前一个数字小，则down[i] = up[i-1] + 1
             down[i] = up[i - 1] + 1 if(nums[i] < nums[i - 1]) else down[i - 1]
         return max(up[-1], down[-1])
 
