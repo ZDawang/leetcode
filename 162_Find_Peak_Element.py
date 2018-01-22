@@ -17,9 +17,7 @@ class Solution(object):
             if l > r:
                 return False
             mid = l + (r - l)//2
-            print(l, mid, r)
             if nums[mid] > nums[mid - 1]  and nums[mid] > nums[mid + 1]:
-                print(mid)
                 res[0] = mid
                 return True
             if find(nums, mid + 1, r, res):return True
