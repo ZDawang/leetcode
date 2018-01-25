@@ -8,19 +8,32 @@
 #time_complecity: O(n)
 #space_complecity: O(n)
 #beats: 80.44
-# 使用哈希（字典）寻找当前 target-当前数是否在字典中，在则结束
+
 class Solution(object):
-	def Two_Sum(self, nums, target):
-		"""
-		:type nums: List[int]
-		:type target: int
-		:rtype: List[int]
-		"""
-		dic = {}
-		for i in range(len(nums)):
-			if target - nums[i] in dic:
-				return (i, dic[target-nums[i]])
-			dic[nums[i]] = i
+    #哈希表
+    def Two_Sum(self, nums, target):
+        d = {}
+        for i, num in enumerate(nums):
+            if target - num in d:
+                return [i, d[target - num]]
+            d[num] = i
+        return
+
+    #排序+双指针
+    def Two_Sum(self, nums, target):
+        nums = sorted([num, i] for i, num in enumerate(nums))
+        l, r = 0, len(nums) - 1
+        while l < r:
+            sums = nums[l][0] + nums[r][0]
+            if sums == target:
+                return [nums[l][1], nums[r][1]]
+            elif sums < target:
+                l += 1
+            else:
+                r -= 1
+        return
+
+
 
 nums = [1,3,4,5,7,8,9,11,15,18,20]
 target = 29
