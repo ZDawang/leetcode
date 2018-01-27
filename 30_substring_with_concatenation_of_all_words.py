@@ -8,7 +8,7 @@
 #time_complecity:  
 #space_complecity: 
 #beats: 
-
+import collections
 class Solution(object):
     # TLE  思想：对每个字符开头向后进行遍历,
     def findSubstring(self, s, words):
@@ -75,6 +75,41 @@ class Solution(object):
                     subd = {}
                     count = 0
         return ans
+
+    #滑动窗口
+    #因为词的长度都一样为n。所以先以0为起始点，n为间隔，向右滑动。
+    #再以1为起始点，n为间隔向右滑动。。。直到以n-1为起始点，向右滑动。
+    def findSubstring3(self, s, words):
+        if not words or len(s) < len(words) * len(words[0]):
+            return []
+        n, res = len(words[0]), []
+        counts = collections.Counter(words)
+        for i in range(n):
+            #窗口的左右边界及窗口内的词
+            l, r, d = i, i, {}
+            while r < len(s):
+                newWord, r = s[r: r+n], r + n
+                d[newWord] = d.get(newWord, 0) + 1
+                #若新词没在words中出现过
+                if not newWord in counts:
+                    l, d = r, {}
+                #若新词次数过多
+                elif d[newWord] > counts[newWord]:
+                    while s[l: l+n] != newWord:
+                        d[s[l: l+n]], l = d[s[l: l+n]] - 1, l + n
+                    d[s[l: l+n]], l = d[s[l: l+n]] - 1, l + n
+                #若新词次数不够
+                elif d[newWord] < counts[newWord]:
+                    continue
+                #若新词次数刚好，检查d是否与counts一样
+                else:
+                    if d == counts:
+                        res.append(l)
+                        d[s[l: l+n]], l = d[s[l: l+n]] - 1, l + n
+        return res
+
+
+
 
 s = "barfoofoobarthefoobarman"
 
