@@ -10,20 +10,19 @@
 #beats: 
 
 class TrieNode(object):
-    def __init__(self, character):
-        self.character = character
+    def __init__(self):
         self.end = False
         self.children = {}
 
 class Trie:
     def __init__(self):
-        self.root = TrieNode("root")
+        self.root = TrieNode()
 
     def insert(self, word):
         node = self.root
         for c in word:
             if not c in node.children:
-                node.children[c] = TrieNode(c)
+                node.children[c] = TrieNode()
             node = node.children[c]
         node.end = True
 
