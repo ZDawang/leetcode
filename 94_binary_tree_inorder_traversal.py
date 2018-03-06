@@ -33,14 +33,14 @@ class TreeNode(object):
 class Solution(object):
     #递归
     def inorderTraversal(self, root):
-        def recur(root, res):
-            if root:
-                recur(root.left, res)
-                res.append(root.val)
-                recur(root.right, res)
+        def dfs(node):
+            if node.left: dfs(node.left)
+            res.append(node.val)
+            if node.right: dfs(node.right)
+        if not root: return []
         res = []
-        recur(root, res)
-        return res
+        dfs(root)
+        return res 
 
     #迭代
     def inorderTraversal2(self, root):
@@ -54,6 +54,31 @@ class Solution(object):
             res.append(root.val)
             root = root.right
         return res
+
+    def inorderTraversal3(self, root):
+        #前驱节点与当前节点
+        pre, cur = None, root   
+        res = []
+        while cur:
+            #左孩子为空，输出当前节点，并转右孩子
+            if not cur.left:    
+                res.append(cur.val)
+                cur = cur.right
+            else:
+                #寻找前驱节点
+                pre = cur.left 
+                while pre.right and pre.right != cur:
+                    pre = pre.right
+                #若前驱节点右孩子为空
+                if not pre.right:
+                    pre.right = cur
+                    cur = cur.left
+                else:
+                    res.append(cur.val)
+                    pre.right = None
+                    cur = cur.right
+        return res
+
 
 nums = [0,1,2,3,4,5,6,7] 
 a = TreeNode(1)

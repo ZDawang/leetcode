@@ -44,3 +44,28 @@ class Solution(object):
             if root.right: stack.append(root.right)
             if root.left: stack.append(root.left)
         return res
+
+    def preorderTraversal4(self, root):
+        #前驱节点与当前节点
+        pre, cur = None, root   
+        res = []
+        while cur:
+            #左孩子为空，输出当前节点，并转右孩子
+            if not cur.left:    
+                res.append(cur.val)
+                cur = cur.right
+            else:
+                #寻找前驱节点
+                pre = cur.left 
+                while pre.right and pre.right != cur:
+                    pre = pre.right
+                #若前驱节点右孩子为空
+                if not pre.right:
+                    pre.right = cur
+                    res.append(cur.val)
+                    cur = cur.left
+                else:
+                    pre.right = None
+                    cur = cur.right
+        return res
+
