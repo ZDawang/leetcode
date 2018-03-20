@@ -17,7 +17,7 @@ class Interval(object):
 
 class Solution(object):
     def merge(self, intervals):
-        intervals.sort(key = lambda i:i.start)
+        intervals.sort(key = lambda i: i.start)
         i = 0
         if not intervals:
             return []

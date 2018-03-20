@@ -47,6 +47,33 @@ class Solution(object):
             search(candidates, target, i, [], res)
         return res
 
+
+    #DFS+剪枝
+    def combinationSum2(self, candidates, target):
+        def dfs(i, sums, tmp):
+            if sums == target:
+                res.append(tmp[:])
+                return
+            if sums > target:
+                return
+            for j in range(i, len(candidates)):
+                tmp.append(candidates[j])
+                dfs(j, sums + candidates[j], tmp)
+                tmp.pop()
+
+        if not candidates: return []
+        candidates.sort()
+        res = []
+        for i in range(len(candidates)):
+            dfs(i, candidates[i], [candidates[i]])
+        return res
+
+
+
+
+
+
+
 candidates = [1,2]
 
 solute = Solution()

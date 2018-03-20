@@ -31,14 +31,6 @@ class TreeNode(object):
 
 
 class Solution(object):
-    def buildTree(self, preorder, inorder):
-        if inorder:
-            x = preorder.pop(0)
-            root = TreeNode(x)
-            index = inorder.index(x)
-            root.left = self.buildTree(preorder, inorder[:index])
-            root.right = self.buildTree(preorder, inorder[index + 1:])
-            return root
 
     def buildTree(self, preorder, inorder):
         if not preorder:

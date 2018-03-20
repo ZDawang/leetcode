@@ -31,8 +31,8 @@ class Solution(object):
             return True
         return False
 
+
     def canJump(self, nums):
-        start = 0
         k = 0
         for i in range(len(nums) - 2, -1, -1):
             if nums[i] == 0:
@@ -45,6 +45,15 @@ class Solution(object):
                         k = 0
         return False if k else True
 
+    #贪心算法,计算每一步的最小距离与最大距离
+    def canJump(self, nums):
+        l, r = 0, 0
+        while l <= r and r < len(nums) - 1:
+            prer = r
+            for i in range(l, prer + 1):
+                r = max(i + nums[i], r)
+            l = prer + 1
+        return r >= len(nums) - 1
 
 
 nums = [3,2,1,0,4]

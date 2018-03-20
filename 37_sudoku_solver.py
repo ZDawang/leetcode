@@ -73,6 +73,41 @@ class Solution(object):
 
 
 
+class Solution:
+    def solveSudoku(self, board):
+        def dfs(i, j):
+            if j >= 9:
+                return True
+            if board[i][j] != ".":
+                return dfs((i + 1)%9, j + (i + 1)//9)
+            for c in str_nums:
+                if (i, c) in d_row or (j, c) in d_col or (i//3, j//3, c) in d_mat:
+                    continue
+                board[i][j] = c
+                d_row.add((i, c))
+                d_col.add((j, c))
+                d_mat.add((i//3, j//3, c))
+                if dfs((i + 1)%9, j + (i + 1)//9):
+                    return True
+                board[i][j] = "."
+                d_row.remove((i, c))
+                d_col.remove((j, c))
+                d_mat.remove((i//3, j//3, c))
+            return False
+
+        str_nums = [str(i) for i in range(1, 10)]
+        d_row, d_col, d_mat = set(), set(), set()
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] == ".":
+                    continue
+                d_row.add((i, board[i][j]))
+                d_col.add((j, board[i][j]))
+                d_mat.add((i//3, j//3, board[i][j]))
+        return dfs(0, 0)
+
+            
+            
 
 board = ["..9748...","7........",".2.1.9...","..7...24.",".64.1.59.",".98...3..","...8.3.2.","........6","...2759.."]
 

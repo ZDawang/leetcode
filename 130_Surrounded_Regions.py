@@ -62,9 +62,41 @@ class Solution(object):
             for j in range(n):
                 board[i][j] = "O" if board[i][j] == "R" else "X"
 
+    #并查集，将所有O的指向边界的O,最后将所有不能指向边界的O全部标为X
+    def solve3(self, board):
+        def find(x):
+            if x != uf[x]:
+                uf[x] = find(uf[x])
+            return uf[x]
 
+        def union(x, y):
+            x, y = find(x), find(y)
+            i, j = divmod(x, n)
+            #若x为边界
+            if i == 0 or i == m-1 or j == 0 or j == n-1:
+                uf[y] = x
+            else:
+                uf[x] = y
 
-
+        if not board or not board[0]:
+            return
+        m, n = len(board), len(board[0])
+        uf = [i*n+j for i in range(m) for j in range(n)]
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == "O":
+                    if i < m-1 and board[i + 1][j] == "O":
+                        union(i*n+j, (i+1)*n+j)
+                    if j < n-1 and board[i][j + 1] == "O":
+                        union(i*n+j, i*n+j+1)
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == "O":
+                    pos = find(i*n + j)
+                    posi, posj = divmod(pos, n)
+                    #若pos不是边界
+                    if not (posi == 0 or posi == m-1 or posj == 0 or posj == n-1):
+                        board[i][j] = "X"
 
 
 

@@ -4,35 +4,35 @@
 #author : zhangdawang
 #data: 2018-3
 #difficulty degree：
-#problem: 297_Serialize_and_Deserialize_Binary_Tree.py
+#problem: 449_Serialize_and_Deserialize_BST.py
 #time_complecity:  
 #space_complecity: 
 #beats: 
 
 class Codec:
-    #前序遍历，用"#"代表空节点，唯一确定一棵树。
+    #前序遍历
     def serialize(self, root):
         def dfs(node):
             if not node:
-                res.append("#")
-            else:
-                res.append(str(node.val))
-                dfs(node.left)
-                dfs(node.right)
-        res = []
+                stack.append("#")
+                return
+            stack.append(str(node.val))
+            dfs(node.left)
+            dfs(node.right)
+        stack = []
         dfs(root)
-        return " ".join(res)
+        return " ".join(stack)
 
-    #使用前序遍历的方式重新遍历
     def deserialize(self, data):
         def dfs():
-            val = stack.pop(0)
+            val = stack.pop()
             if val == "#":
-                return None
+                return
             node = TreeNode(int(val))
             node.left = dfs()
             node.right = dfs()
             return node
 
         stack = data.split(" ")
+        stack.reverse()
         return dfs()

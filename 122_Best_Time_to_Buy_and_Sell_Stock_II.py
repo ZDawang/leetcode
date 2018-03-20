@@ -34,7 +34,7 @@ class Solution(object):
         dp_sell = 0
         for i in range(1, l):
             dp_sell, dp_buy = max(dp_sell, dp_buy + prices[i]), max(dp_sell - prices[i], dp_buy)
-        return max(dp_buy, dp_sell)
+        return dp_sell
 
 
 

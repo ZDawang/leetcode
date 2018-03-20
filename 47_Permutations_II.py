@@ -2,15 +2,15 @@
 # -*- coding: utf-8 -*-
 
 #author : zhangdawang
-#data:2017-3-31
+#data: 2018-3
 #difficulty degree：
-#problem: 46_permutations
+#problem: 47_Permutations_II.py
 #time_complecity:  
 #space_complecity: 
 #beats: 
 
 class Solution(object):
-    def permute(self, nums):
+    def permuteUnique(self, nums):
         def recurse(d, res, l):
             if -1 in d.values():
                 return
@@ -31,24 +31,3 @@ class Solution(object):
         recurse(d, res, [])
         return res
 
-    def permute(self, nums):
-        def dfs(tmp, d):
-            if len(tmp) == len(nums):
-                res.append(tmp)
-                return
-            for num in nums:
-                if num in d:
-                    continue
-                d.add(num)
-                dfs(tmp + [num], d)
-                d.remove(num)
-        res = []
-        dfs([], set())
-        return res
-
-
-nums = [1,1,2]
-solute = Solution()
-res = solute.permute(nums)
-
-print(res)

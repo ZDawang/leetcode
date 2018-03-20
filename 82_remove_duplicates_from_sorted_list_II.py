@@ -52,6 +52,25 @@ class Solution(object):
             start.next = None
         return res.next
 
+
+    def deleteDuplicates2(self, head):
+        if not head or not head.next:
+            return head
+        pre, cur = ListNode(float("inf")), head
+        res, pre.next = pre, head
+        while cur and cur.next:
+            if cur.val == cur.next.val:
+                while cur.next and cur.val == cur.next.val:
+                    cur = cur.next
+                cur = cur.next
+                pre.next = cur
+            else:
+                pre = pre.next
+                cur = cur.next
+        return res.next
+
+
+
 l1 = [1,2,2]
 
 head = ListNode(1)

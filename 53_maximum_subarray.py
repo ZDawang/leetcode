@@ -35,6 +35,12 @@ class Solution(object):
             res = max(res, temp)
         return res
 
+    #DP
+    def maxSubArray3(self, nums):
+        dp = [0] * len(nums)
+        for i, num in enumerate(nums):
+            dp[i] = num + max(0, dp[i - 1])
+        return max(dp)
 
 nums = [-2,-1]
 

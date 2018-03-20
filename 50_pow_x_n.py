@@ -52,6 +52,22 @@ class Solution(object):
             res *= temp
         return res
 
+    #DFS+memo
+    def myPow3(self, x, n):
+        def dfs(x, k):
+            if k == 1: return x
+            if k in memo:
+                return memo[k]
+            tmp = dfs(x, k//2) * dfs(x, k//2 + (k & 1))
+            memo[k] = tmp
+            return tmp
+        if n == 0:
+            return 1
+        memo = {}
+        if n < 0:
+            return dfs(1/x, abs(n))
+        else:
+            return dfs(x, n)
 
 x = 3
 n = -1

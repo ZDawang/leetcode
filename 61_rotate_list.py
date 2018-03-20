@@ -48,6 +48,22 @@ class Solution(object):
         new2.next.next = None
         return res.next
 
+
+    def rotateRight(self, head, k):
+        if not head: return head
+        n, cur = 1, head
+        while cur.next:
+            cur, n = cur.next, n + 1
+        k = n - (k % n) - 1
+        tail, cur = cur, head
+        while k > 0:
+            cur, k = cur.next, k - 1
+        tail.next = head
+        tmp = cur.next
+        cur.next = None
+        return tmp
+
+
 l1 = [1, 2, 3, 4, 5]
 
 head = ListNode(1)

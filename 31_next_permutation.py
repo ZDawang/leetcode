@@ -25,11 +25,30 @@ class Solution(object):
                         index = j
                 nums[index] = nums[i]
                 nums[i] = little_bigger
+                #这里可以是O(n)的，因为后面是倒序的
                 a = sorted(nums[i + 1:])
                 for k in range(i + 1,l):
                     nums[k] = a[k - i - 1]
                 return
         nums.sort()
+        return
+
+    def nextPermutation2(self, nums):
+        n = len(nums)
+        i = n - 2
+        while i >= 0 and nums[i] >= nums[i + 1]:
+            i -= 1
+        if i == -1:
+            nums.sort()
+            return
+        diff = 10000
+        idx = -1
+        for j in range(i + 1, n):
+            if 0 < nums[j] - nums[i] < diff:
+                diff = nums[j] - nums[i]
+                idx = j
+        nums[i], nums[idx] = nums[idx], nums[i]
+        nums[i + 1:] = sorted(nums[i + 1:])
         return
 
 nums = [1,2]
