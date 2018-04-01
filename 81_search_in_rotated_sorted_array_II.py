@@ -37,6 +37,25 @@ class Solution(object):
         return False
 
 
+    def search2(self, nums, target):
+        if not nums: return False
+        l, r = 0, len(nums) - 1
+        while l < r:
+            m = (l + r) >> 1
+            if nums[m] < nums[r]:
+                if nums[m] < target <= nums[r]:
+                    l = m + 1
+                else:
+                    r = m
+            elif nums[m] > nums[r]:
+                if nums[l] <= target <= nums[m]:
+                    r = m
+                else:
+                    l = m + 1
+            else:
+                r -= 1
+        return nums[l] == target
+
 
 
 nums = [1,1,1,1]

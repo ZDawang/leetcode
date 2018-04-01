@@ -51,6 +51,24 @@ class Solution(object):
         res.pop()
         return res
 
+    def levelOrder2(self, root):
+        if not root: return []
+        queue = collections.deque([root, "#"])
+        res, level = [], []
+        while queue:
+            node = queue.popleft()
+            if node == "#":
+                res.append(level)
+                if queue:
+                    queue.append("#")
+                    level = []
+            else:
+                level.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+        return res
 
 nums = [0,1,2,2,0,4,4,3]
 a = TreeNode(1)

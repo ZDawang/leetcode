@@ -74,7 +74,19 @@ class Solution(object):
                 frontNeed += 1
         return res
 
-
+        #统计从左向右需要的糖数，从右向左需要的糖数，取最大值。
+        def candyNum(ratings):
+            count = [1 for i in range(n)]
+            for i in range(1, len(ratings)):
+                if ratings[i] > ratings[i - 1]:
+                    count[i] = count[i-1] + 1
+                else:
+                    count[i] = 1
+            return count
+        if not ratings: return 0
+        n = len(ratings)
+        leftCount, rightCount = candyNum(ratings), candyNum(ratings[::-1])
+        return sum(max(leftCount[i], rightCount[n - 1 -i]) for i in range(n))
 
 ratings = [1,2,2,2,2]
 solute = Solution()
