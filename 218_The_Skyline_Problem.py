@@ -55,7 +55,8 @@ class Solution(object):
         return res[1:]
 
 
-    def getSkyline3(self, buildings):
+
+
 
 
 
